@@ -1,6 +1,6 @@
-import { Client } from "https://deno.land/x/mysql/mod.ts";
+import { Client } from "https://deno.land/x/mysql@v2.11.0/mod.ts";
 
-let db = await new Client().connect({
+const db = await new Client().connect({
 
     hostname: "localhost",
     username: "root",

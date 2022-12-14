@@ -1,6 +1,6 @@
 // main.ts
 import express from "npm:express@^4.18";
-import { getUser, comparePassword} from "./db.ts"
+import { getUser, comparePassword, getShortUser} from "./db.ts"
 const app = express();
 
   /**Base route.
@@ -21,13 +21,23 @@ app.get("/", function (_req: any, res: { send: (arg0: string) => void; }) {
    * localhost:3000/get/user?id=1 
    * localhost:3000/get/user?id=2
    * localhost:3000/get/user?id=3
+   * localhost:3000/get/user?id=1&full=0
    */
 
 app.get("/get/user", async function (req: any, res: { send: (arg0: string) => void; }) {
 
   const id:number = req.query.id;
-  console.log("getting user " + id)
-  const user = await getUser(id)
+  let user= "";
+
+  if(req.query.full){
+
+    user = await getUser(id);
+
+  }else{
+
+    user = await getShortUser(id);
+  }
+  
   res.send(user);
 });
 

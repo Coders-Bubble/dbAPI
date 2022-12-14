@@ -1,6 +1,7 @@
 // main.ts
-import express from "npm:express@^4.18"; // maybe use as export in depts.ts
+import express from "npm:express@^4.18" // maybe use as export in depts.ts 
 import { getUser, comparePassword, getShortUser} from "./db.ts"
+
 const app = express();
 
   /**Base route.

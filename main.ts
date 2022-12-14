@@ -48,11 +48,11 @@ app.get("/get/user", async function (req: any, res: { send: (arg0: string) => vo
    * localhost:3000/get/?id=1&?password=321
    */
 
- app.get("/get/:id/:password", async function (req: any, res: { send: (arg0: string) => void; }) {
+ app.get("/get/login", async function (req: any, res: { send: (arg0: string) => void; }) {
 
-  const id:number = req.query.id;
+  const email:string = req.query.email;
   const passwordToTest:string = req.query.password
-  res.send(await comparePassword(id,passwordToTest));
+  res.send(await comparePassword(email,passwordToTest));
 });
 
 

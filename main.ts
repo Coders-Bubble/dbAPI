@@ -47,8 +47,8 @@ app.get("/", function (_req: express.Request, res: {setHeader: any; send: (arg0:
 /**Route for comparing a given Password to one in the db.
    * 
    * Examples:
-   * localhost:3000/get/?id=1&?password=123
-   * localhost:3000/get/?id=1&?password=321
+   * localhost:3000/get/login?email=1&?password=123
+   * localhost:3000/get/login?email=1&?password=321
    */
 
  app.get("/get/login", async function (req: express.Request, res: {setHeader: any; send: (arg0: string) => void; }) {
@@ -56,7 +56,6 @@ app.get("/", function (_req: express.Request, res: {setHeader: any; send: (arg0:
   res.setHeader('Content-Type', 'application/json');
   const email:string = req.query.email;
   const passwordToTest:string = req.query.password
-  res.send(await comparePassword(email,passwordToTest));
   res.send(await comparePassword(email,passwordToTest));
 });
 

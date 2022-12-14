@@ -26,12 +26,12 @@ const db = await new Client().connect({
   /** Gets a short user from the db.
    * 
    ** A short user consists of firstname lastname, and a profile picture
-   * @param email is used to find the user in the database.
+   * @param id is used to find the user in the database.
    * @return is a Json of the whole user from the database.
    */
-  export async function getShortUser(email:string):Promise<string>{
+  export async function getShortUser(id:number):Promise<string>{
 
-    const user = await db.query(`select first_name, last_name, user_picture from user where email= ?`,[email]);
+    const user = await db.query(`select first_name, last_name, user_picture from user where user_id= ?`,[id]);
     return JSON.stringify(user[0]);
   }
   

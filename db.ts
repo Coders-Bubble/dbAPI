@@ -5,9 +5,8 @@ const db = await new Client().connect({
     hostname: "localhost",
     username: "root",
     db: "usermanagement",
-    password: "codersbayroot",
+    password: "codersbayroot"
   });
-
 
   /** Gets a whole user from the db.
    * 
@@ -20,6 +19,31 @@ const db = await new Client().connect({
     const user = await db.query(`select * from user where user_id = ?`,[id]);
     return JSON.stringify(user[0]);
   }
+
+
+  /** Gets a short user from the db.
+   * 
+   * A short user consists of firstname lastname, and a profile picture
+   * @param id is used to find the user in the database.
+   * @return is a Json of the whole user from the database.
+   */
+  export async function getShortUser(id:number):Promise<string>{
+
+    const user = await db.query(`select first_name, last_name, user_picture from user where user_id = ?`,[id]);
+    return JSON.stringify(user[0]);
+  }
+  
+  /** Gets a users theme from the db.
+   * 
+   * @param id is used to find the user in the database.
+   * @return is a Json of the whole user from the database.
+   */
+
+export async function gettheme(id:number):Promise<string>{
+
+  const theme = await db.query(`select theme from user where user_id = ?`,[id]);
+  return theme;
+}
 
   /** Gets the user password from the db and compares it to the given password.
    * 
@@ -34,3 +58,9 @@ const db = await new Client().connect({
     const json = JSON.stringify(["matches",passwordToTest == passwordFromDB[0]["password"]])
     return json;
   }
+
+  /* 
+  tests
+  */
+
+

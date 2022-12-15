@@ -1,6 +1,5 @@
-import { Client } from "https://deno.land/x/mysql@v2.11.0/mod.ts";
-
-const db = await new Client().connect({
+var mysql = require('mysql');
+const db = mysql.createConnection({
 
     hostname: "localhost",
     username: "root",
